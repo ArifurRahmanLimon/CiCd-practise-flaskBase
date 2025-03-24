@@ -37,8 +37,6 @@ class Config:
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER')
 
-
-
     # Analytics
     GOOGLE_ANALYTICS_ID = os.environ.get('GOOGLE_ANALYTICS_ID', '')
     SEGMENT_API_KEY = os.environ.get('SEGMENT_API_KEY', '')
@@ -81,8 +79,7 @@ class DevelopmentConfig(Config):
 
     @classmethod
     def init_app(cls, app):
-        print('THIS APP IS IN DEBUG MODE. \
-                YOU SHOULD NOT SEE THIS IN PRODUCTION.')
+        print('THIS APP IS IN DEBUG MODE. \YOU SHOULD NOT SEE THIS IN PRODUCTION.')
 
 
 class TestingConfig(Config):
@@ -93,8 +90,7 @@ class TestingConfig(Config):
 
     @classmethod
     def init_app(cls, app):
-        print('THIS APP IS IN TESTING MODE.  \
-                YOU SHOULD NOT SEE THIS IN PRODUCTION.')
+        print('THIS APP IS IN TESTING MODE.  \YOU SHOULD NOT SEE THIS IN PRODUCTION.')
 
 
 class ProductionConfig(Config):
@@ -108,7 +104,6 @@ class ProductionConfig(Config):
     def init_app(cls, app):
         Config.init_app(app)
         assert os.environ.get('SECRET_KEY'), 'SECRET_KEY IS NOT SET!'
-
         flask_raygun.Provider(app, app.config['RAYGUN_APIKEY']).attach()
 
 
